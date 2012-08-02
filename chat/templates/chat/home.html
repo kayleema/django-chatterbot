@@ -1,0 +1,45 @@
+<html>
+<body>
+	<h1>SimpleChat Home</h1>
+	<p>The simplest possible chatterbot.</p>
+	<hr/>
+	<h2>Ask:</h2>
+	<p>Ask me a question</p>
+	<form action="/ask" method="GET">
+		<p>
+		Bot ID: <input type=text name=b />
+		</p>
+		<p>
+		Question: <input type=text name=q />
+		</p>
+		<p>
+		<input type=submit />
+		</p>
+	</form>
+	<hr/>
+	<h2>Feed:</h2>
+	<p>Feed me some data.  (I'm hungry).</p>
+	<form action="/feed" method="POST" enctype="multipart/form-data">{% csrf_token %}
+		<p>
+		Bot ID: <input type=text name=b />
+		</p>
+		<p>
+		Data: <input type=file name=f />
+		</p>
+		<p>
+		<input type=submit />
+		</p>
+    </form>
+	<hr/>
+	<h2>Create:</h2>
+	<p>Spawn a new chatterer.</p>
+	<form action="/new" method="GET" >
+		<p>
+		Name: <input type=text name=n />
+		</p>
+		<p>
+		<input type=submit />
+		</p>
+    </form>
+</body>
+</html>
