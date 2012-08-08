@@ -27,3 +27,8 @@ def newbot(request):
     bot = Bot(name=request.GET['n'])
     bot.save()
     return HttpResponse("successfully created bot named '{1}' with id: {0}".format(bot.id, bot.name))
+
+def interact(request):
+    bot = Bot.objects.get(id=request.GET['b'])
+    return render_to_response('chat/interact.html',{'bot' : bot},
+                              context_instance=RequestContext(request))

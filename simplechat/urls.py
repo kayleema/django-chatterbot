@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^/?$', 'chat.views.home', name='home'),
     url(r'^feed?$', 'chat.views.feed', name='feed'),
     url(r'^new?$', 'chat.views.newbot', name='newbot'),
+    url(r'^interact?$', 'chat.views.interact', name='interract'),
 )

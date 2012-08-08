@@ -1,0 +1,44 @@
+<html>
+<head>
+<script type="text/javascript">
+function ask()
+{
+	//alert('ask');
+  	var url = "/ask?b={{ bot.id }}&q=" + document.getElementById("textin").value;
+	document.getElementById("textin").value = "Loading...";
+	document.getElementById("textin").disabled = true;
+	var xmlhttp;
+	if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
+  		xmlhttp=new XMLHttpRequest();
+  	}
+	else{ // code for IE6, IE5
+  		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+	xmlhttp.onreadystatechange=function(){
+ 	 	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+ 	 		//alert(xmlhttp.responseText);
+		    document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + "<p>" + xmlhttp.responseText + "</p>";
+			document.getElementById("textin").value = "";
+			document.getElementById("textin").disabled = false;
+    	}
+  	}
+	//alert(url);
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send();
+	return false;
+}
+</script>
+</head>
+<body>
+	<h1>INTERACTIVE with id {{ bot.id }}</h1>
+	<div id="log" style="padding:0px 15px; height:400px; width:300px; overflow: scroll; border: 1px solid black;">
+		<p>Hello</p>
+	</div>
+	<form>
+		<p>
+			<input id="textin" type=text name=input style="width:300px;" />
+			<input type=submit onclick="return ask();" value="say" />
+		</p>
+	</form>
+</body>
+</html>
