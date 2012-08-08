@@ -1,0 +1,58 @@
+<html>
+<head>
+<style type="text/css">
+
+.loguser{
+	color: #00f;
+}
+.logbot{
+	color: #f00;
+}
+
+</style>
+<script type="text/javascript">
+function ask(inputid, outputid, botid)
+{
+	var textin = document.getElementById(inputid);
+	var query = textin.value;
+  	var url = "/ask?b=" + botid + "&q=" + query;
+  	var log = document.getElementById(outputid);
+  	log.innerHTML += "<p class=loguser>" + query + "</p>";
+	textin.value = "Loading...";
+	textin.disabled = true;
+	var xmlhttp;
+	if (window.XMLHttpRequest){ // code for IE7+, Firefox, Chrome, Opera, Safari
+  		xmlhttp=new XMLHttpRequest();
+  	}
+	else{ // code for IE6, IE5
+  		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+	xmlhttp.onreadystatechange=function(){
+ 	 	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+ 	 		//alert(xmlhttp.responseText);
+		    log.innerHTML += "<p class=logbot>" + xmlhttp.responseText + "</p>";
+			textin.value = "";
+			textin.disabled = false;
+			log.scrollTop = log.scrollHeight;
+    	}
+  	}
+	//alert(url);
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send();
+	return false;
+}
+</script>
+</head>
+<body>
+	<h1>INTERACTIVE with id {{ bot.id }}</h1>
+	<div id="log" style="padding:0px 15px; height:400px; width:300px; overflow: scroll; border: 1px solid black;">
+		<p class=logbot>Hello</p>
+	</div>
+	<form>
+		<p>
+			<input id="textin" type=text name=input style="width:300px;" />
+			<input type=submit onclick="return ask('textin', 'log', '{{ bot.id }}');" value="say" />
+		</p>
+	</form>
+</body>
+</html>
