@@ -13,7 +13,11 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
+import os, sys
+
+## I added the following line to
+## add the directory above this one to the system path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "simplechat.settings")
 
