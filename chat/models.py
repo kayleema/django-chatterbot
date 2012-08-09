@@ -47,6 +47,8 @@ class Bot(models.Model):
 			if len(pairs) == 0:
 				prev_word = '.'
 			else:
+				index = random.randint(0, pairs.count()-1)
+				pair = pairs.all()[index]
 				prev_word = pairs.order_by('?')[0].second
 			result += " " + prev_word
 		return result
