@@ -42,8 +42,13 @@ function ask(inputid, outputid, botid)
 	return false;
 }
 </script>
+    <title>BOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
+	<div class=container>
 	<h1>INTERACTIVE with id {{ bot.id }}</h1>
 	<div id="log" style="padding:0px 15px; height:400px; width:300px; overflow: scroll; border: 1px solid black;">
 		<p class=logbot>Hello</p>
@@ -54,5 +59,10 @@ function ask(inputid, outputid, botid)
 			<input type=submit onclick="return ask('textin', 'log', '{{ bot.id }}');" value="say" />
 		</p>
 	</form>
+	</div>
+
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
