@@ -7,3 +7,4 @@ I hacked this together one evening just for fun.  The code could be cleaned up q
 but I haven't had the time.  The chatbot uses a simple first-order hidden markov model.
 
 Fintest
+test
